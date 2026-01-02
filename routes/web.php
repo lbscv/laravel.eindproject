@@ -52,6 +52,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->only(['index','create','store']);
     Route::patch('users/{user}/toggle-admin', [\App\Http\Controllers\Admin\UserController::class, 'toggleAdmin'])
         ->name('admin.users.toggleAdmin');
+
+    Route::resource('teams', \App\Http\Controllers\Admin\TeamController::class);
+
 });
 
 require __DIR__.'/auth.php';
