@@ -11,8 +11,13 @@ class NewsController extends Controller
     // PUBLIC: /news
     public function index()
     {
-        $news = News::orderByDesc('published_at')->get();
-        return view('news.index', compact('news'));
+         $news = News::orderByDesc('published_at')->get();
+
+        if (request()->is('admin/*')) {
+            return view('admin.news.index', compact('news'));
+        }
+
+        return view('public.news.index', compact('news'));
     }
 
     // ADMIN: /admin/news/create

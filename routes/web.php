@@ -23,7 +23,7 @@ Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::resource('news', NewsController::class)->except(['index', 'show']);
+    Route::resource('news', NewsController::class)->except(['show']);
 });
 
 
