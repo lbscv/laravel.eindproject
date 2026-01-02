@@ -48,6 +48,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::resource('faq-categories', FaqCategoryController::class);
     Route::resource('faq-items', FaqItemController::class);
+
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->only(['index','create','store']);
+    Route::patch('users/{user}/toggle-admin', [\App\Http\Controllers\Admin\UserController::class, 'toggleAdmin'])
+        ->name('admin.users.toggleAdmin');
 });
 
 require __DIR__.'/auth.php';
