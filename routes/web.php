@@ -17,4 +17,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+use Illuminate\Support\Facades\Route;
+
+Route::middleware(['auth', 'admin'])->get('/admin', function () {
+    return 'Admin OK';
+})->name('admin.dashboard');
+
 require __DIR__.'/auth.php';
