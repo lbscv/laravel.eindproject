@@ -1,38 +1,52 @@
-<h1>Nieuwsitem bewerken</h1>
+<h1>Admin Nieuws bewerken</h1>
 
 @if($errors->any())
-    <ul>
-        @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
+  <ul>
+    @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
+  </ul>
 @endif
 
 <form method="POST" action="{{ route('news.update', $news) }}" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
+  @csrf
+  @method('PUT')
 
-    <div>
-        <label>Titel</label><br>
-        <input name="title" value="{{ old('title', $news->title) }}">
-    </div>
+  <div>
+    <label>Titel</label><br>
+    <input name="title" value="{{ old('title', $news->title) }}" required>
+  </div>
 
-    <div>
-        <label>Publicatiedatum</label><br>
-        <input type="date" name="published_at" value="{{ old('published_at', $news->published_at) }}">
-    </div>
+  <div>
+    <label>Publicatiedatum</label><br>
+    <input type="date" name="published_at"
+           value="{{ old('published_at', $news->published_at->format('Y-m-d')) }}" required>
+  </div>
 
-    <div>
-        <label>Nieuwe afbeelding (optioneel)</label><br>
-        <input type="file" name="image">
-    </div>
+  <div>
+    <label>Huidige afbeelding</label><br>
+    @if($news->image)
+      <img src="{{ asset('storage/'.$news->image) }}" style="max-width:200px;">
+    @else
+      <p>Geen</p>
+    @endif
+  </div>
 
-    <div>
-        <label>Content</label><br>
-        <textarea name="content" rows="6">{{ old('content', $news->content) }}</textarea>
-    </div>
+  <div>
+    <label>Nieuwe afbeelding (optioneel)</label><br>
+    <input type="file" name="image" accept="image/*">
+  </div>
 
-    <button type="submit">Opslaan</button>
+  <div>
+    <label>Content</label><br>
+    <textarea name="content" rows="8" required>{{ old('content', $news->content) }}</textarea>
+  </div>
+
+  <button type="submit">Opslaan</button>
 </form>
 
-<p><a href="{{ route('news.show', $news) }}">← Terug</a></p>
+<form method="POST" action="{{ route('news.destroy', $news) }}" style="margin-top:10px;">
+  @csrf
+  @method('DELETE')
+  <button type="submit">Verwijderen</button>
+</form>
+
+<p><a href="{{ route('news.index') }}">← naar nieuws</a></p>

@@ -1,22 +1,18 @@
 <h1>Nieuws</h1>
 
-@if (session('success'))
-    <p>{{ session('success') }}</p>
-@endif
+@if(session('success')) <p>{{ session('success') }}</p> @endif
 
 <ul>
-@forelse($news as $item)
-    <li>
-        <a href="{{ route('news.show', $item) }}">{{ $item->title }}</a>
-        ({{ $item->published_at }})
-    </li>
-@empty
-    <li>Geen nieuwsitems.</li>
-@endforelse
-</ul>
+@foreach($items as $n)
+  <li style="margin-bottom: 16px;">
+    <a href="{{ route('news.show', $n) }}">
+      <strong>{{ $n->title }}</strong>
+    </a>
+    <div>{{ $n->published_at->format('d-m-Y') }}</div>
 
-@auth
-    @if(auth()->user()->is_admin)
-        <p><a href="{{ route('news.create') }}">+ Nieuw nieuwsitem</a></p>
+    @if($n->image)
+      <img src="{{ asset('storage/'.$n->image) }}" style="max-width:200px;">
     @endif
-@endauth
+  </li>
+@endforeach
+</ul>

@@ -8,25 +8,23 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-    // PUBLIC: /news
+
     public function index()
     {
-         $news = News::orderByDesc('published_at')->get();
-
-        if (request()->is('admin/*')) {
-            return view('admin.news.index', compact('news'));
-        }
-
-        return view('public.news.index', compact('news'));
+        $items = News::orderByDesc('published_at')->get();
+        return view('public.news.index', compact('items'));
     }
 
-    // ADMIN: /admin/news/create
+    public function show(News $news)
+    {
+        return view('public.news.show', compact('news'));
+    }
+
     public function create()
     {
         return view('admin.news.create');
     }
 
-    // ADMIN: POST /admin/news
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -40,24 +38,16 @@ class NewsController extends Controller
             $validated['image'] = $request->file('image')->store('news', 'public');
         }
 
-        $news = News::create($validated);
+        News::create($validated);
 
-        return redirect()->route('news.show', $news)->with('success', 'Nieuwsitem toegevoegd.');
+        return redirect()->route('news.index')->with('success', 'Nieuwsitem aangemaakt.');
     }
 
-    // PUBLIC: /news/{news}
-    public function show(News $news)
-    {
-        return view('news.show', compact('news'));
-    }
-
-    // ADMIN: /admin/news/{news}/edit
     public function edit(News $news)
     {
         return view('admin.news.edit', compact('news'));
     }
 
-    // ADMIN: PUT/PATCH /admin/news/{news}
     public function update(Request $request, News $news)
     {
         $validated = $request->validate([
@@ -76,10 +66,9 @@ class NewsController extends Controller
 
         $news->update($validated);
 
-        return redirect()->route('news.show', $news)->with('success', 'Nieuwsitem aangepast.');
+        return redirect()->route('news.index')->with('success', 'Nieuwsitem aangepast.');
     }
 
-    // ADMIN: DELETE /admin/news/{news}
     public function destroy(News $news)
     {
         if ($news->image) {
