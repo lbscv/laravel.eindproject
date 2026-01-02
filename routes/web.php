@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\FaqItemController;
 
 use App\Http\Controllers\ContactController;
 
+use App\Http\Controllers\UserProfileController;
+
+
 
 
 
@@ -48,6 +51,8 @@ Route::middleware(['auth', 'admin'])->get('/admin', function () {
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+Route::get('/users/{user}', [UserProfileController::class, 'show'])->name('users.show');
 
 
 require __DIR__.'/auth.php';
