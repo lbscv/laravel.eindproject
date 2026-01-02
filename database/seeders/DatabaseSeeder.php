@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-        ['email' => 'admin@ehb.be'],
-        [
-            'name' => 'admin',
-            'password' => Hash::make('Password!321'),
-            'is_admin' => true,
-        ]
-    );
-
+            ['email' => 'admin@ehb.be'],
+            [
+                'name' => 'admin',
+                'password' => Hash::make('Password!321'),
+                'is_admin' => true,
+            ]
+        );
+        $this->call(NewsSeeder::class);
     }
 }
