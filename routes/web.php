@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\NewsController;
+
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqItemController;
+
 
 
 Route::get('/', function () {
@@ -34,6 +37,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('faq-categories', FaqCategoryController::class);
     Route::resource('faq-items', FaqItemController::class);
 });
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
 Route::middleware(['auth', 'admin'])->get('/admin', function () {
     return 'Admin OK';
