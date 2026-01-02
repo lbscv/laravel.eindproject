@@ -9,6 +9,9 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqItemController;
 
+use App\Http\Controllers\ContactController;
+
+
 
 
 Route::get('/', function () {
@@ -42,5 +45,9 @@ Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 Route::middleware(['auth', 'admin'])->get('/admin', function () {
     return 'Admin OK';
 })->name('admin.dashboard');
+
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
 
 require __DIR__.'/auth.php';
