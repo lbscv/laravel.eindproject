@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Storage
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -26,15 +27,26 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+         $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $validated = $request->validate([
+            'username' => ['nullable', 'string', 'max:255'],
+            'birthday' => ['nullable', 'date'],
+            'about_me' => ['nullable', 'string'],
+            'avatar' => ['nullable', 'image', 'max:2048'],
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            // oude avatar verwijderen
+            if ($user->avatar) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+            $validated['avatar'] = $request->file('avatar')->store('avatars', 'public');
         }
 
-        $request->user()->save();
+        $user->update($validated);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('profile.edit')->with('success', 'Profiel aangepast.');
     }
 
     /**
