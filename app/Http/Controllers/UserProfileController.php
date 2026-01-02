@@ -8,6 +8,7 @@ class UserProfileController extends Controller
 {
     public function show(User $user)
     {
+        $this->authorize('view', $user);
         return view('public.users.show', compact('user'));
     }
 }
