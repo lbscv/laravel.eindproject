@@ -1,38 +1,99 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1>Nieuws bewerken</h1>
+<div class="max-w-3xl space-y-6">
 
-@if($errors->any())
-    <ul>
-        @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
-    </ul>
-@endif
+    {{-- Header --}}
+    <div>
+        <h1 class="text-2xl font-bold">Nieuws bewerken</h1>
+        <p class="text-sm text-slate-600">
+            Pas het bestaande nieuwsitem aan. Wijzigingen zijn meteen zichtbaar op de publieke website.
+        </p>
+    </div>
 
-<form method="POST" action="{{ route('admin.news.update', $news) }}" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
+    {{-- Errors --}}
+    @if($errors->any())
+        <div class="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <ul class="list-disc pl-5">
+                @foreach($errors->all() as $e)
+                    <li>{{ $e }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <p>
-        <label>Titel</label><br>
-        <input type="text" name="title" value="{{ old('title', $news->title) }}">
-    </p>
+    {{-- Form --}}
+    <form method="POST"
+          action="{{ route('admin.news.update', $news) }}"
+          enctype="multipart/form-data"
+          class="space-y-5 rounded-xl border bg-white p-6 shadow-sm">
 
-    <p>
-        <label>Publicatiedatum</label><br>
-        <input type="date" name="published_at" value="{{ old('published_at', optional($news->published_at)->format('Y-m-d')) }}">
-    </p>
+        @csrf
+        @method('PUT')
 
-    <p>
-        <label>Content</label><br>
-        <textarea name="content" rows="6">{{ old('content', $news->content) }}</textarea>
-    </p>
+        {{-- Titel --}}
+        <div>
+            <label class="block text-sm font-medium">Titel</label>
+            <input type="text"
+                   name="title"
+                   value="{{ old('title', $news->title) }}"
+                   class="mt-1 w-full rounded-md border px-3 py-2 text-sm"
+                   required>
+        </div>
 
-    <p>
-        <label>Nieuwe afbeelding (optioneel)</label><br>
-        <input type="file" name="image" accept="image/*">
-    </p>
+        {{-- Publicatiedatum --}}
+        <div>
+            <label class="block text-sm font-medium">Publicatiedatum</label>
+            <input type="date"
+                   name="published_at"
+                   value="{{ old('published_at', optional($news->published_at)->format('Y-m-d')) }}"
+                   class="mt-1 w-full rounded-md border px-3 py-2 text-sm">
+        </div>
 
-    <button type="submit">Opslaan</button>
-</form>
+        {{-- Content --}}
+        <div>
+            <label class="block text-sm font-medium">Inhoud</label>
+            <textarea name="content"
+                      rows="6"
+                      class="mt-1 w-full rounded-md border px-3 py-2 text-sm"
+                      required>{{ old('content', $news->content) }}</textarea>
+        </div>
+
+        {{-- Image --}}
+        <div>
+            <label class="block text-sm font-medium">Nieuwe afbeelding (optioneel)</label>
+
+            @if($news->image)
+                <div class="mt-2 mb-2 text-sm text-slate-600">
+                    Huidige afbeelding:
+                    <div class="mt-2">
+                        <img src="{{ asset('storage/'.$news->image) }}"
+                             alt="Nieuws afbeelding"
+                             class="max-h-40 rounded border">
+                    </div>
+                </div>
+            @endif
+
+            <input type="file"
+                   name="image"
+                   accept="image/*"
+                   class="mt-1 w-full text-sm">
+        </div>
+
+        {{-- Actions --}}
+        <div class="flex justify-between pt-4">
+            <a href="{{ route('admin.news.index') }}"
+               class="rounded-md border px-4 py-2 text-sm hover:bg-slate-50">
+                Annuleren
+            </a>
+
+            <button type="submit"
+                    class="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800">
+                Wijzigingen opslaan
+            </button>
+        </div>
+
+    </form>
+
+</div>
 @endsection
