@@ -9,15 +9,15 @@
 
 <nav style="padding:10px; border-bottom:1px solid #ddd;">
     <strong>Admin</strong> |
-    <a href="{{ route('news.index') }}">Publiek: Nieuws</a> |
-    <a href="{{ route('faq.index') }}">Publiek: FAQ</a> |
-    <a href="{{ route('contact.create') }}">Publiek: Contact</a> |
     <a href="{{ route('admin.dashboard') }}">Admin home</a> |
-    <a href="{{ route('teams.index') }}">Teams</a> |
-    <a href="{{ route('faq-categories.index') }}">FAQ categorieën</a> |
-    <a href="{{ route('faq-items.index') }}">FAQ items</a> |
-    <a href="{{ route('users.index') }}">Users</a> |
-    <a href="{{ route('news.create') }}">Nieuws aanmaken</a> |
+    <a href="{{ route('admin.teams.index') }}">Teams</a> |
+    <a href="{{ route('admin.faq-categories.index') }}">FAQ categorieën</a> |
+    <a href="{{ route('admin.faq-items.index') }}">FAQ items</a> |
+    <a href="{{ route('admin.users.index') }}">Users</a> |
+    <a href="{{ route('admin.news.create') }}">Nieuws aanmaken</a> |
+    <a href="{{ route('admin.news.index') }}">Nieuws beheer</a> |
+
+
 
     <form method="POST" action="{{ route('logout') }}" style="display:inline; margin-left:10px;">
         @csrf

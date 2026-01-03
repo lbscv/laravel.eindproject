@@ -6,8 +6,9 @@
   @if(session('success')) <p>{{ session('success') }}</p> @endif
 
   <p>
-    <a href="{{ route('faq-items.create') }}">+ Nieuw item</a> |
-    <a href="{{ route('faq-categories.index') }}">Categorieën</a>
+    <a href="{{ route('admin.faq-items.create') }}">+ Nieuw item</a> |
+    <a href="{{ route('admin.faq-categories.index') }}">Categorieën</a>
+
   </p>
 
   <table border="1" cellpadding="6">
@@ -20,11 +21,13 @@
         <td>{{ $i->category?->name }}</td>
         <td>{{ $i->question }}</td>
         <td>
-          <a href="{{ route('faq-items.edit', $i) }}">Bewerk</a>
-          <form method="POST" action="{{ route('faq-items.destroy', $i) }}" style="display:inline;">
-            @csrf @method('DELETE')
-            <button type="submit">Verwijder</button>
+          <a href="{{ route('admin.faq-items.edit', $i) }}">Bewerk</a>
+          <form method="POST" action="{{ route('admin.faq-items.destroy', $i) }}" style="display:inline;">
+              @csrf
+              @method('DELETE')
+              <button type="submit">Verwijder</button>
           </form>
+
         </td>
       </tr>
     @endforeach
