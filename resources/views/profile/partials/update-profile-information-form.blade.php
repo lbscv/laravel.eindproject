@@ -89,6 +89,36 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="username" value="Username (publiek)" />
+            <x-text-input id="username" name="username" class="mt-1 block w-full"
+                :value="old('username', $user->username)" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="birthday" value="Verjaardag" />
+            <x-text-input id="birthday" name="birthday" type="date" class="mt-1 block w-full"
+                :value="old('birthday', optional($user->birthday)->format('Y-m-d'))" />
+            <x-input-error :messages="$errors->get('birthday')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="about_me" value="Over mij" />
+            <textarea name="about_me" rows="4" class="mt-1 block w-full">{{ old('about_me', $user->about_me) }}</textarea>
+            <x-input-error :messages="$errors->get('about_me')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="avatar" value="Profielfoto" />
+            <input type="file" name="avatar" accept="image/*" class="mt-1 block w-full">
+            <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
+
+            @if($user->avatar_path)
+                <img src="{{ asset('storage/'.$user->avatar_path) }}" style="max-width:120px;" class="mt-2">
+            @endif
+        </div>
+
         {{-- Birthday --}}
         <div>
             <x-input-label for="birthday" :value="__('Birthday')" />

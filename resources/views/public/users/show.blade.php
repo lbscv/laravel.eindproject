@@ -1,18 +1,15 @@
 @extends('layouts.public')
+
 @section('content')
-  <h1>Profiel</h1>
+    <h1>Profiel van {{ $user->username ?? $user->name }}</h1>
 
-  <p><strong>Naam:</strong> {{ $user->username ?? $user->name }}</p>
+    @if($user->avatar_path)
+        <img src="{{ asset('storage/'.$user->avatar_path) }}" style="max-width:150px;">
+    @endif
 
-  @if($user->birthday)
-    <p><strong>Verjaardag:</strong> {{ $user->birthday->format('d-m-Y') }}</p>
-  @endif
+    <p><strong>Username:</strong> {{ $user->username ?? '-' }}</p>
+    <p><strong>Verjaardag:</strong> {{ $user->birthday?->format('d-m-Y') ?? '-' }}</p>
 
-  @if($user->avatar)
-    <img src="{{ asset('storage/'.$user->avatar) }}" style="max-width:200px;">
-  @endif
-
-  @if($user->about_me)
-    <p><strong>Over mij:</strong><br>{!! nl2br(e($user->about_me)) !!}</p>
-  @endif
+    <h3>Over mij</h3>
+    <p>{!! nl2br(e($user->about_me ?? '')) !!}</p>
 @endsection

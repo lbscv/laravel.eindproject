@@ -22,42 +22,27 @@ class ProfileController extends Controller
         $user = $request->user();
 
         $validated = $request->validate([
-            // Breeze standaard velden
             'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                Rule::unique('users', 'email')->ignore($user->id),
-            ],
-
-            // Jouw extra profielvelden
-            'username' => ['nullable', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'username' => ['nullable', 'string', 'max:50', 'unique:users,username,' . $user->id],
             'birthday' => ['nullable', 'date'],
-            'about_me' => ['nullable', 'string'],
+            'about_me' => ['nullable', 'string', 'max:2000'],
             'avatar' => ['nullable', 'image', 'max:2048'],
         ]);
 
-        // Avatar upload
         if ($request->hasFile('avatar')) {
-            if ($user->avatar) {
-                Storage::disk('public')->delete($user->avatar);
+            if ($user->avatar_path) {
+                Storage::disk('public')->delete($user->avatar_path);
             }
-            $validated['avatar'] = $request->file('avatar')->store('avatars', 'public');
+
+            $validated['avatar_path'] = $request->file('avatar')->store('avatars', 'public');
         }
 
-        $user->fill($validated);
+        unset($validated['avatar']);
 
-        // Als email verandert: reset verificatie
-        if ($user->isDirty('email') && $user instanceof MustVerifyEmail) {
-            $user->email_verified_at = null;
-        }
+        $user->update($validated);
 
-        $user->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return back()->with('status', 'profile-updated');
     }
 
     public function destroy(Request $request)
