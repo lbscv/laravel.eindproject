@@ -10,7 +10,7 @@
     </ul>
   @endif
 
-  <form method="POST" action="{{ route('news.update', $news) }}" enctype="multipart/form-data">
+  <form method="POST" action="{{ route('admin.news.update', $news) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -47,12 +47,12 @@
     <button type="submit">Opslaan</button>
   </form>
 
-  <form method="POST" action="{{ route('news.destroy', $news) }}" style="margin-top:10px;">
+  <form method="POST" action="{{ route('admin.news.destroy', $news) }}" style="margin-top:10px;">
     @csrf
     @method('DELETE')
     <button type="submit">Verwijderen</button>
   </form>
 
-  <p><a href="{{ route('news.index') }}">← naar nieuws</a></p>
+  <p><a href="{{ route('admin.news.index') }}">← naar nieuws</a></p>
 
 @endsection

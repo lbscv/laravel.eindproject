@@ -10,7 +10,7 @@
     </ul>
   @endif
 
-  <form method="POST" action="{{ route('news.store') }}" enctype="multipart/form-data">
+  <form method="POST" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
     @csrf
 
     <div>
@@ -36,6 +36,6 @@
     <button type="submit">Aanmaken</button>
   </form>
 
-  <p><a href="{{ route('news.index') }}">← naar nieuws</a></p>
+  <p><a href="{{ route('admin.news.index') }}">← naar nieuws</a></p>
 
 @endsection

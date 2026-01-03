@@ -7,7 +7,7 @@
     @if(session('success')) <p>{{ session('success') }}</p> @endif
     @if(session('error')) <p>{{ session('error') }}</p> @endif
 
-    <p><a href="{{ route('users.create') }}">+ Nieuwe user aanmaken</a></p>
+    <p><a href="{{ route('admin.users.create') }}">+ Nieuwe user aanmaken</a></p>
 
     <table border="1" cellpadding="6">
         <thead>
@@ -31,7 +31,7 @@
                         @csrf
                         @method('PATCH')
                         <button type="submit">
-                            {{ $u->is_admin ? 'Maak normaal' : 'Maak admin' }}
+                            {{ $u->is_admin ? 'Maak user' : 'Maak admin' }}
                         </button>
                     </form>
                 </td>

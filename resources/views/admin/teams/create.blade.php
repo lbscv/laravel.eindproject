@@ -10,7 +10,7 @@
     </ul>
   @endif
 
-  <form method="POST" action="{{ route('teams.store') }}">
+  <form method="POST" action="{{ route('admin.teams.store') }}">
     @csrf
 
     <div>
@@ -35,6 +35,6 @@
     <button type="submit">Aanmaken</button>
   </form>
 
-  <p><a href="{{ route('teams.index') }}">← Terug</a></p>
+  <p><a href="{{ route('admin.teams.index') }}">← Terug</a></p>
 
 @endsection

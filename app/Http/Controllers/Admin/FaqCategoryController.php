@@ -27,7 +27,7 @@ class FaqCategoryController extends Controller
 
         FaqCategory::create($validated);
 
-        return redirect()->route('faq-categories.index')->with('success', 'Categorie aangemaakt.');
+        return redirect()->route('admin.faq-categories.index')->with('success', 'Categorie aangemaakt.');
     }
 
     public function edit(FaqCategory $faq_category)
@@ -43,17 +43,17 @@ class FaqCategoryController extends Controller
 
         $faq_category->update($validated);
 
-        return redirect()->route('faq-categories.index')->with('success', 'Categorie aangepast.');
+        return redirect()->route('admin.faq-categories.index')->with('success', 'Categorie aangepast.');
     }
 
     public function destroy(FaqCategory $faq_category)
     {
         $faq_category->delete();
-        return redirect()->route('faq-categories.index')->with('success', 'Categorie verwijderd.');
+        return redirect()->route('admin.faq-categories.index')->with('success', 'Categorie verwijderd.');
     }
 
     public function show(FaqCategory $faq_category)
     {
-        return redirect()->route('faq-categories.edit', $faq_category);
+        return redirect()->route('admin.faq-categories.edit', $faq_category);
     }
 }

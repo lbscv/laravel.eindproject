@@ -10,13 +10,12 @@
 
     <p>{!! nl2br(e($news->content)) !!}</p>
 
-    <p><a href="{{ route('news.index') }}">← Terug naar nieuws</a></p>
+    <p><a href="{{ route('admin.news.index') }}">← Terug naar nieuws</a></p>
 
     @auth
         @if(auth()->user()->is_admin)
-            <p><a href="{{ route('news.edit', $news) }}">Bewerk</a></p>
-
-            <form method="POST" action="{{ route('news.destroy', $news) }}">
+            <p><a href="{{ route('admin.news.edit', $news) }}">Bewerk</a></p>
+            <form method="POST" action="{{ route('admin.news.destroy', $news) }}">
                 @csrf
                 @method('DELETE')
                 <button type="submit">Verwijder</button>

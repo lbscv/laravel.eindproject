@@ -12,7 +12,7 @@
     </ul>
   @endif
 
-  <form method="POST" action="{{ route('teams.update', $team) }}">
+  <form method="POST" action="{{ route('admin.teams.update', $team) }}">
     @csrf
     @method('PUT')
 
@@ -43,6 +43,6 @@
     <button type="submit">Opslaan</button>
   </form>
 
-  <p><a href="{{ route('teams.index') }}">← Terug</a></p>
+  <p><a href="{{ route('admin.teams.index') }}">← Terug</a></p>
 
 @endsection

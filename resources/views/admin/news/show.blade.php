@@ -11,6 +11,6 @@
 
   <p>{!! nl2br(e($news->content)) !!}</p>
 
-  <p><a href="{{ route('news.index') }}">← terug naar nieuws</a></p>
+  <p><a href="{{ route('admin.news.index') }}">← terug naar nieuws</a></p>
 
 @endsection

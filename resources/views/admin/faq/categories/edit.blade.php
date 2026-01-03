@@ -8,7 +8,7 @@
     <ul>@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>
   @endif
 
-  <form method="POST" action="{{ route('faq-categories.update', $category) }}">
+  <form method="POST" action="{{ route('admin.faq-categories.update', $category) }}">
     @csrf
     @method('PUT')
     <label>Naam</label><br>
@@ -16,11 +16,11 @@
     <button type="submit">Opslaan</button>
   </form>
 
-  <form method="POST" action="{{ route('faq-categories.destroy', $category) }}" style="margin-top:10px;">
+  <form method="POST" action="{{ route('admin.faq-categories.destroy', $category) }}" style="margin-top:10px;">
     @csrf @method('DELETE')
     <button type="submit">Verwijder</button>
   </form>
 
-  <p><a href="{{ route('faq-categories.index') }}">← Terug</a></p>
+  <p><a href="{{ route('admin.faq-categories.index') }}">← Terug</a></p>
 
 @endsection

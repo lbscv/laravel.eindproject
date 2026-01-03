@@ -37,7 +37,7 @@ class TeamController extends Controller
 
         $team->users()->sync($validated['user_ids'] ?? []);
 
-        return redirect()->route('teams.index')->with('success', 'Team aangemaakt.');
+        return redirect()->route('admin.teams.index')->with('success', 'Team aangemaakt.');
     }
 
     public function edit(Team $team)
@@ -65,17 +65,17 @@ class TeamController extends Controller
 
         $team->users()->sync($validated['user_ids'] ?? []);
 
-        return redirect()->route('teams.index')->with('success', 'Team aangepast.');
+        return redirect()->route('admin.teams.index')->with('success', 'Team aangepast.');
     }
 
     public function destroy(Team $team)
     {
         $team->delete();
-        return redirect()->route('teams.index')->with('success', 'Team verwijderd.');
+        return redirect()->route('admin.teams.index')->with('success', 'Team verwijderd.');
     }
 
     public function show(Team $team)
     {
-        return redirect()->route('teams.edit', $team);
+        return redirect()->route('admin.teams.edit', $team);
     }
 }

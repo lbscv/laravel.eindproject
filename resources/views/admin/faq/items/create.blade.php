@@ -8,7 +8,7 @@
     <ul>@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>
   @endif
 
-  <form method="POST" action="{{ route('faq-items.store') }}">
+  <form method="POST" action="{{ route('admin.faq-items.store') }}">
     @csrf
 
     <div>
@@ -36,6 +36,6 @@
     <button type="submit">Aanmaken</button>
   </form>
 
-  <p><a href="{{ route('faq-items.index') }}">← Terug</a></p>
+  <p><a href="{{ route('admin.faq-items.index') }}">← Terug</a></p>
 
 @endsection

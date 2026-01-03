@@ -12,7 +12,7 @@
     </ul>
   @endif
 
-  <form method="POST" action="{{ route('users.store') }}">
+  <form method="POST" action="{{ route('admin.users.store') }}">
     @csrf
 
     <div>
@@ -40,6 +40,6 @@
     <button type="submit">Aanmaken</button>
   </form>
 
-  <p><a href="{{ route('users.index') }}">← Terug</a></p>
+  <p><a href="{{ route('admin.users.index') }}">← Terug</a></p>
 
 @endsection

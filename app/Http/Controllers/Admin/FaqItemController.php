@@ -31,7 +31,7 @@ class FaqItemController extends Controller
 
         FaqItem::create($validated);
 
-        return redirect()->route('faq-items.index')->with('success', 'FAQ item aangemaakt.');
+        return redirect()->route('admin.faq-items.index')->with('success', 'FAQ item aangemaakt.');
     }
 
     public function edit(FaqItem $faq_item)
@@ -53,17 +53,17 @@ class FaqItemController extends Controller
 
         $faq_item->update($validated);
 
-        return redirect()->route('faq-items.index')->with('success', 'FAQ item aangepast.');
+        return redirect()->route('admin.faq-items.index')->with('success', 'FAQ item aangepast.');
     }
 
     public function destroy(FaqItem $faq_item)
     {
         $faq_item->delete();
-        return redirect()->route('faq-items.index')->with('success', 'FAQ item verwijderd.');
+        return redirect()->route('admin.faq-items.index')->with('success', 'FAQ item verwijderd.');
     }
 
     public function show(FaqItem $faq_item)
     {
-        return redirect()->route('faq-items.edit', $faq_item);
+        return redirect()->route('admin.faq-items.edit', $faq_item);
     }
 }

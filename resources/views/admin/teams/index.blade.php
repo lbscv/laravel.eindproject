@@ -6,7 +6,7 @@
 
   @if(session('success')) <p>{{ session('success') }}</p> @endif
 
-  <p><a href="{{ route('teams.create') }}">+ Nieuw team</a></p>
+  <p><a href="{{ route('admin.teams.create') }}">+ Nieuw team</a></p>
 
   <table border="1" cellpadding="6">
     <thead>
@@ -26,9 +26,10 @@
           <td>{{ $t->season }}</td>
           <td>{{ $t->users_count }}</td>
           <td>
-            <a href="{{ route('teams.edit', $t) }}">Bewerk</a>
+            <a href="{{ route('admin.teams.edit', $t) }}">Bewerk</a>
 
-            <form method="POST" action="{{ route('teams.destroy', $t) }}" style="display:inline;">
+            <form method="POST" action="{{ route('admin.teams.destroy', $t) }}" style="display:inline;">
+
               @csrf
               @method('DELETE')
               <button type="submit">Verwijder</button>
