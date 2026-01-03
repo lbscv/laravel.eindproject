@@ -11,16 +11,12 @@ class ContactFormSubmitted extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public array $data;
-
-    public function __construct(array $data)
-    {
-        $this->data = $data;
-    }
+    public function __construct(public ContactMessage $contactMessage) {}
 
     public function build()
     {
-        return $this->subject('Contact: '.$this->data['subject'])
-            ->view('emails.contact_submitted');
+        return $this
+            ->subject('Nieuw contactbericht: ' . ($this->contactMessage->subject ?? 'Geen onderwerp'))
+            ->view('emails.contact.submitted');
     }
 }

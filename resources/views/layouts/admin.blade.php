@@ -16,6 +16,8 @@
     <a href="{{ route('admin.users.index') }}">Users</a> |
     <a href="{{ route('admin.news.create') }}">Nieuws aanmaken</a> |
     <a href="{{ route('admin.news.index') }}">Nieuws beheer</a> |
+    <a href="{{ route('admin.contact-messages.index') }}">Contactberichten</a> |
+
 
 
 

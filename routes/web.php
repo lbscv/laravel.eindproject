@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqItemController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\ContactMessageController;
 
 // Public routes
 
@@ -76,6 +77,12 @@ Route::middleware(['auth', 'admin'])
 
         // Teams management
         Route::resource('teams', TeamController::class);
+
+        // Contact messages management
+        Route::get('contact-messages', [ContactMessageController::class, 'index'])->name('contact-messages.index');
+        Route::get('contact-messages/{contactMessage}', [ContactMessageController::class, 'show'])->name('contact-messages.show');
+        Route::post('contact-messages/{contactMessage}/reply', [ContactMessageController::class, 'reply'])->name('contact-messages.reply');
+
     });
 
 
