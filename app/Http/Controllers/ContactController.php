@@ -24,11 +24,11 @@ class ContactController extends Controller
         ]);
 
         // 1) opslaan in DB
-        $contact = ContactMessage::create($validated);
+        ContactMessage::create($validated);
 
         // 2) mail naar admin
-        Mail::to(config('mail.admin_address'))
-            ->send(new ContactFormSubmitted($contact));
+        $adminEmail = config('mail.admin_email', env('ADMIN_EMAIL', 'admin@ehb.be'));
+        Mail::to($adminEmail)->send(new ContactFormSubmitted($validated));
 
         return redirect()->route('contact.create')->with('success', 'Je bericht is verstuurd!');
     }

@@ -1,8 +1,6 @@
 <h1>Contact</h1>
 
-@if(session('success'))
-  <p>{{ session('success') }}</p>
-@endif
+@if(session('success')) <p>{{ session('success') }}</p> @endif
 
 @if($errors->any())
   <ul>
@@ -35,5 +33,5 @@
     <textarea name="message" rows="6" required>{{ old('message') }}</textarea>
   </div>
 
-  <button type="submit">Verstuur</button>
+  <button type="submit">Versturen</button>
 </form>
