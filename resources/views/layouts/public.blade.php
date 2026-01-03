@@ -18,6 +18,8 @@
             <div class="ml-auto flex items-center gap-3">
                 @auth
                     <a href="{{ route('users.show', auth()->user()) }}">Mijn profiel</a>
+                    <a href="{{ route('profile.edit') }}">Profiel aanpassen</a>
+
 
                     @if(auth()->user()->is_admin)
                         <a href="{{ route('admin.dashboard') }}">Admin</a>
