@@ -42,7 +42,10 @@ class ProfileController extends Controller
 
         $user->update($validated);
 
-        return back()->with('status', 'profile-updated');
+        return redirect()->route('news.index')->with('status', 'profile-updated');
+
+
+
     }
 
     public function destroy(Request $request)
