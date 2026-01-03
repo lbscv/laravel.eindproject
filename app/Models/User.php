@@ -21,11 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'is_admin',
         'username',
         'birthday',
-        'avatar',
         'about_me',
+        'avatar_path',
+        'is_admin',
     ];
     protected $casts = [
         'email_verified_at' => 'datetime',

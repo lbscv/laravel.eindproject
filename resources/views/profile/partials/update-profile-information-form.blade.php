@@ -8,6 +8,15 @@
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
+    @if ($errors->any())
+        <div style="border:1px solid red; padding:10px; margin-top:10px;">
+            <ul>
+                @foreach ($errors->all() as $e)
+                    <li>{{ $e }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     {{-- Email verification resend --}}
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
