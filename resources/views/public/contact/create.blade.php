@@ -1,37 +1,43 @@
-<h1>Contact</h1>
+@extends('layouts.public')
 
-@if(session('success')) <p>{{ session('success') }}</p> @endif
+@section('content')
+  
+  <h1>Contact</h1>
 
-@if($errors->any())
-  <ul>
-    @foreach($errors->all() as $e)
-      <li>{{ $e }}</li>
-    @endforeach
-  </ul>
-@endif
+  @if(session('success')) <p>{{ session('success') }}</p> @endif
 
-<form method="POST" action="{{ route('contact.store') }}">
-  @csrf
+  @if($errors->any())
+    <ul>
+      @foreach($errors->all() as $e)
+        <li>{{ $e }}</li>
+      @endforeach
+    </ul>
+  @endif
 
-  <div>
-    <label>Naam</label><br>
-    <input name="name" value="{{ old('name') }}" required>
-  </div>
+  <form method="POST" action="{{ route('contact.store') }}">
+    @csrf
 
-  <div>
-    <label>Email</label><br>
-    <input type="email" name="email" value="{{ old('email') }}" required>
-  </div>
+    <div>
+      <label>Naam</label><br>
+      <input name="name" value="{{ old('name') }}" required>
+    </div>
 
-  <div>
-    <label>Onderwerp</label><br>
-    <input name="subject" value="{{ old('subject') }}" required>
-  </div>
+    <div>
+      <label>Email</label><br>
+      <input type="email" name="email" value="{{ old('email') }}" required>
+    </div>
 
-  <div>
-    <label>Bericht</label><br>
-    <textarea name="message" rows="6" required>{{ old('message') }}</textarea>
-  </div>
+    <div>
+      <label>Onderwerp</label><br>
+      <input name="subject" value="{{ old('subject') }}" required>
+    </div>
 
-  <button type="submit">Versturen</button>
-</form>
+    <div>
+      <label>Bericht</label><br>
+      <textarea name="message" rows="6" required>{{ old('message') }}</textarea>
+    </div>
+
+    <button type="submit">Versturen</button>
+  </form>
+
+@endsection

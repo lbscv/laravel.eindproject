@@ -1,34 +1,40 @@
-<h1>Team aanmaken</h1>
+@extends('layouts.admin')
 
-@if($errors->any())
-  <ul>
-    @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
-  </ul>
-@endif
+@section('content')
+    
+  <h1>Team aanmaken</h1>
 
-<form method="POST" action="{{ route('teams.store') }}">
-  @csrf
+  @if($errors->any())
+    <ul>
+      @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
+    </ul>
+  @endif
 
-  <div>
-    <label>Naam</label><br>
-    <input name="name" value="{{ old('name') }}" required>
-  </div>
+  <form method="POST" action="{{ route('teams.store') }}">
+    @csrf
 
-  <div>
-    <label>Seizoen</label><br>
-    <input name="season" value="{{ old('season') }}" placeholder="2025-2026">
-  </div>
+    <div>
+      <label>Naam</label><br>
+      <input name="name" value="{{ old('name') }}" required>
+    </div>
 
-  <h3>Leden</h3>
-  @foreach($users as $u)
-    <label style="display:block;">
-      <input type="checkbox" name="user_ids[]" value="{{ $u->id }}"
-        {{ in_array($u->id, old('user_ids', [])) ? 'checked' : '' }}>
-      {{ $u->name }} ({{ $u->email }})
-    </label>
-  @endforeach
+    <div>
+      <label>Seizoen</label><br>
+      <input name="season" value="{{ old('season') }}" placeholder="2025-2026">
+    </div>
 
-  <button type="submit">Aanmaken</button>
-</form>
+    <h3>Leden</h3>
+    @foreach($users as $u)
+      <label style="display:block;">
+        <input type="checkbox" name="user_ids[]" value="{{ $u->id }}"
+          {{ in_array($u->id, old('user_ids', [])) ? 'checked' : '' }}>
+        {{ $u->name }} ({{ $u->email }})
+      </label>
+    @endforeach
 
-<p><a href="{{ route('teams.index') }}">← Terug</a></p>
+    <button type="submit">Aanmaken</button>
+  </form>
+
+  <p><a href="{{ route('teams.index') }}">← Terug</a></p>
+
+@endsection

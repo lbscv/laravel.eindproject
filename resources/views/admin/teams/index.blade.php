@@ -1,36 +1,42 @@
-<h1>Admin - Teams</h1>
+@extends('layouts.admin')
 
-@if(session('success')) <p>{{ session('success') }}</p> @endif
+@section('content')
+    
+  <h1>Admin - Teams</h1>
 
-<p><a href="{{ route('teams.create') }}">+ Nieuw team</a></p>
+  @if(session('success')) <p>{{ session('success') }}</p> @endif
 
-<table border="1" cellpadding="6">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Naam</th>
-      <th>Seizoen</th>
-      <th># Leden</th>
-      <th>Acties</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($teams as $t)
+  <p><a href="{{ route('teams.create') }}">+ Nieuw team</a></p>
+
+  <table border="1" cellpadding="6">
+    <thead>
       <tr>
-        <td>{{ $t->id }}</td>
-        <td>{{ $t->name }}</td>
-        <td>{{ $t->season }}</td>
-        <td>{{ $t->users_count }}</td>
-        <td>
-          <a href="{{ route('teams.edit', $t) }}">Bewerk</a>
-
-          <form method="POST" action="{{ route('teams.destroy', $t) }}" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Verwijder</button>
-          </form>
-        </td>
+        <th>ID</th>
+        <th>Naam</th>
+        <th>Seizoen</th>
+        <th># Leden</th>
+        <th>Acties</th>
       </tr>
-    @endforeach
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      @foreach($teams as $t)
+        <tr>
+          <td>{{ $t->id }}</td>
+          <td>{{ $t->name }}</td>
+          <td>{{ $t->season }}</td>
+          <td>{{ $t->users_count }}</td>
+          <td>
+            <a href="{{ route('teams.edit', $t) }}">Bewerk</a>
+
+            <form method="POST" action="{{ route('teams.destroy', $t) }}" style="display:inline;">
+              @csrf
+              @method('DELETE')
+              <button type="submit">Verwijder</button>
+            </form>
+          </td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
+
+@endsection

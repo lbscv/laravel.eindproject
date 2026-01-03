@@ -1,39 +1,45 @@
-<h1>Nieuwe user aanmaken</h1>
+@extends('layouts.admin')
 
-@if($errors->any())
-  <ul>
-    @foreach($errors->all() as $e)
-      <li>{{ $e }}</li>
-    @endforeach
-  </ul>
-@endif
+@section('content')
+    
+  <h1>Nieuwe user aanmaken</h1>
 
-<form method="POST" action="{{ route('users.store') }}">
-  @csrf
+  @if($errors->any())
+    <ul>
+      @foreach($errors->all() as $e)
+        <li>{{ $e }}</li>
+      @endforeach
+    </ul>
+  @endif
 
-  <div>
-    <label>Naam</label><br>
-    <input name="name" value="{{ old('name') }}" required>
-  </div>
+  <form method="POST" action="{{ route('users.store') }}">
+    @csrf
 
-  <div>
-    <label>Email</label><br>
-    <input type="email" name="email" value="{{ old('email') }}" required>
-  </div>
+    <div>
+      <label>Naam</label><br>
+      <input name="name" value="{{ old('name') }}" required>
+    </div>
 
-  <div>
-    <label>Wachtwoord</label><br>
-    <input type="password" name="password" required>
-  </div>
+    <div>
+      <label>Email</label><br>
+      <input type="email" name="email" value="{{ old('email') }}" required>
+    </div>
 
-  <div>
-    <label>
-      <input type="checkbox" name="is_admin" value="1" {{ old('is_admin') ? 'checked' : '' }}>
-      Maak admin
-    </label>
-  </div>
+    <div>
+      <label>Wachtwoord</label><br>
+      <input type="password" name="password" required>
+    </div>
 
-  <button type="submit">Aanmaken</button>
-</form>
+    <div>
+      <label>
+        <input type="checkbox" name="is_admin" value="1" {{ old('is_admin') ? 'checked' : '' }}>
+        Maak admin
+      </label>
+    </div>
 
-<p><a href="{{ route('users.index') }}">← Terug</a></p>
+    <button type="submit">Aanmaken</button>
+  </form>
+
+  <p><a href="{{ route('users.index') }}">← Terug</a></p>
+
+@endsection

@@ -1,3 +1,7 @@
+@extends('layouts.admin')
+
+@section('content')
+   
 <h1>Admin - FAQ Categorieën</h1>
 @if(session('success')) <p>{{ session('success') }}</p> @endif
 
@@ -24,3 +28,5 @@
 </table>
 
 <p><a href="{{ route('faq-items.index') }}">→ Naar FAQ items</a></p>
+
+@endsection

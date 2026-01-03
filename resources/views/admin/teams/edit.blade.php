@@ -1,42 +1,48 @@
-<h1>Team bewerken</h1>
+@extends('layouts.admin')
 
-@if(session('success')) <p>{{ session('success') }}</p> @endif
+@section('content')
+   
+  <h1>Team bewerken</h1>
 
-@if($errors->any())
-  <ul>
-    @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
-  </ul>
-@endif
+  @if(session('success')) <p>{{ session('success') }}</p> @endif
 
-<form method="POST" action="{{ route('teams.update', $team) }}">
-  @csrf
-  @method('PUT')
+  @if($errors->any())
+    <ul>
+      @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
+    </ul>
+  @endif
 
-  <div>
-    <label>Naam</label><br>
-    <input name="name" value="{{ old('name', $team->name) }}" required>
-  </div>
+  <form method="POST" action="{{ route('teams.update', $team) }}">
+    @csrf
+    @method('PUT')
 
-  <div>
-    <label>Seizoen</label><br>
-    <input name="season" value="{{ old('season', $team->season) }}">
-  </div>
+    <div>
+      <label>Naam</label><br>
+      <input name="name" value="{{ old('name', $team->name) }}" required>
+    </div>
 
-  <h3>Leden</h3>
-  @php
-    $oldSelected = old('user_ids');
-    $checkedIds = is_array($oldSelected) ? $oldSelected : $selected;
-  @endphp
+    <div>
+      <label>Seizoen</label><br>
+      <input name="season" value="{{ old('season', $team->season) }}">
+    </div>
 
-  @foreach($users as $u)
-    <label style="display:block;">
-      <input type="checkbox" name="user_ids[]" value="{{ $u->id }}"
-        {{ in_array($u->id, $checkedIds) ? 'checked' : '' }}>
-      {{ $u->name }} ({{ $u->email }})
-    </label>
-  @endforeach
+    <h3>Leden</h3>
+    @php
+      $oldSelected = old('user_ids');
+      $checkedIds = is_array($oldSelected) ? $oldSelected : $selected;
+    @endphp
 
-  <button type="submit">Opslaan</button>
-</form>
+    @foreach($users as $u)
+      <label style="display:block;">
+        <input type="checkbox" name="user_ids[]" value="{{ $u->id }}"
+          {{ in_array($u->id, $checkedIds) ? 'checked' : '' }}>
+        {{ $u->name }} ({{ $u->email }})
+      </label>
+    @endforeach
 
-<p><a href="{{ route('teams.index') }}">← Terug</a></p>
+    <button type="submit">Opslaan</button>
+  </form>
+
+  <p><a href="{{ route('teams.index') }}">← Terug</a></p>
+
+@endsection

@@ -1,3 +1,7 @@
+@extends('layouts.admin')
+
+@section('content')
+   
 <h1>FAQ item bewerken</h1>
 
 @if($errors->any())
@@ -39,3 +43,5 @@
 </form>
 
 <p><a href="{{ route('faq-items.index') }}">← Terug</a></p>
+
+@endsection
