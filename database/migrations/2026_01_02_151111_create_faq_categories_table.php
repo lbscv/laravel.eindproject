@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faq_categories', function (Blueprint $table) {
+       Schema::create('faq_categories', function (\Illuminate\Database\Schema\Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
         });
-
     }
 
     /**

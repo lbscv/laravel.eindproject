@@ -9,7 +9,7 @@ class FaqCategory extends Model
 {
     protected $fillable = ['name'];
 
-    public function items(): HasMany
+    public function items()
     {
         return $this->hasMany(FaqItem::class);
     }

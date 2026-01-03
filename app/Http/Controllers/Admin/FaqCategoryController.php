@@ -10,13 +10,13 @@ class FaqCategoryController extends Controller
 {
     public function index()
     {
-        $categories = FaqCategory::orderBy('name')->get();
-        return view('admin.faq_categories.index', compact('categories'));
+        $categories = FaqCategory::withCount('items')->orderBy('name')->get();
+        return view('admin.faq.categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('admin.faq_categories.create');
+        return view('admin.faq.categories.create');
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class FaqCategoryController extends Controller
 
     public function edit(FaqCategory $faq_category)
     {
-        return view('admin.faq_categories.edit', ['category' => $faq_category]);
+        return view('admin.faq.categories.edit', ['category' => $faq_category]);
     }
 
     public function update(Request $request, FaqCategory $faq_category)
@@ -50,5 +50,10 @@ class FaqCategoryController extends Controller
     {
         $faq_category->delete();
         return redirect()->route('faq-categories.index')->with('success', 'Categorie verwijderd.');
+    }
+
+    public function show(FaqCategory $faq_category)
+    {
+        return redirect()->route('faq-categories.edit', $faq_category);
     }
 }

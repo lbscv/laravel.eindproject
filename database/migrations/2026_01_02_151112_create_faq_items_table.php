@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faq_items', function (Blueprint $table) {
+        Schema::create('faq_items', function (\Illuminate\Database\Schema\Blueprint $table) {
             $table->id();
-            $table->foreignId('faq_category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('faq_category_id')->constrained('faq_categories')->cascadeOnDelete();
             $table->string('question');
             $table->text('answer');
             $table->timestamps();
-        }); 
+        });
     }
 
     /**

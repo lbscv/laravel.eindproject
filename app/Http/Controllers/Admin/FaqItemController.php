@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\FaqCategory;
 use App\Models\FaqItem;
+use App\Models\FaqCategory;
 use Illuminate\Http\Request;
 
 class FaqItemController extends Controller
@@ -12,13 +12,13 @@ class FaqItemController extends Controller
     public function index()
     {
         $items = FaqItem::with('category')->orderByDesc('id')->get();
-        return view('admin.faq_items.index', compact('items'));
+        return view('admin.faq.items.index', compact('items'));
     }
 
     public function create()
     {
         $categories = FaqCategory::orderBy('name')->get();
-        return view('admin.faq_items.create', compact('categories'));
+        return view('admin.faq.items.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -31,13 +31,13 @@ class FaqItemController extends Controller
 
         FaqItem::create($validated);
 
-        return redirect()->route('faq-items.index')->with('success', 'Vraag toegevoegd.');
+        return redirect()->route('faq-items.index')->with('success', 'FAQ item aangemaakt.');
     }
 
     public function edit(FaqItem $faq_item)
     {
         $categories = FaqCategory::orderBy('name')->get();
-        return view('admin.faq_items.edit', [
+        return view('admin.faq.items.edit', [
             'item' => $faq_item,
             'categories' => $categories,
         ]);
@@ -53,12 +53,17 @@ class FaqItemController extends Controller
 
         $faq_item->update($validated);
 
-        return redirect()->route('faq-items.index')->with('success', 'Vraag aangepast.');
+        return redirect()->route('faq-items.index')->with('success', 'FAQ item aangepast.');
     }
 
     public function destroy(FaqItem $faq_item)
     {
         $faq_item->delete();
-        return redirect()->route('faq-items.index')->with('success', 'Vraag verwijderd.');
+        return redirect()->route('faq-items.index')->with('success', 'FAQ item verwijderd.');
+    }
+
+    public function show(FaqItem $faq_item)
+    {
+        return redirect()->route('faq-items.edit', $faq_item);
     }
 }

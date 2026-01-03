@@ -8,8 +8,13 @@
   @csrf
   @method('PUT')
   <label>Naam</label><br>
-  <input name="name" value="{{ old('name', $category->name) }}">
+  <input name="name" value="{{ old('name', $category->name) }}" required>
   <button type="submit">Opslaan</button>
+</form>
+
+<form method="POST" action="{{ route('faq-categories.destroy', $category) }}" style="margin-top:10px;">
+  @csrf @method('DELETE')
+  <button type="submit">Verwijder</button>
 </form>
 
 <p><a href="{{ route('faq-categories.index') }}">← Terug</a></p>
