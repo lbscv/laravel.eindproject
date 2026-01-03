@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
-public function show(User $user)
+class UserProfileController extends Controller
 {
-    return view('public.users.show', compact('user'));
+    public function show(User $user)
+    {
+        return view('public.users.show', compact('user'));
+    }
 }
-

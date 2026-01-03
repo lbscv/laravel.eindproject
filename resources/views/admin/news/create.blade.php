@@ -1,41 +1,37 @@
 @extends('layouts.admin')
 
 @section('content')
-    
-  <h1>Admin Nieuws aanmaken</h1>
+<h1>Nieuws aanmaken</h1>
 
-  @if($errors->any())
+@if($errors->any())
     <ul>
-      @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
+        @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
     </ul>
-  @endif
+@endif
 
-  <form method="POST" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
     @csrf
 
-    <div>
-      <label>Titel</label><br>
-      <input name="title" value="{{ old('title') }}" required>
-    </div>
+    <p>
+        <label>Titel</label><br>
+        <input type="text" name="title" value="{{ old('title') }}">
+    </p>
 
-    <div>
-      <label>Publicatiedatum</label><br>
-      <input type="date" name="published_at" value="{{ old('published_at') }}" required>
-    </div>
+    <p>
+        <label>Publicatiedatum</label><br>
+        <input type="date" name="published_at" value="{{ old('published_at') }}">
+    </p>
 
-    <div>
-      <label>Afbeelding</label><br>
-      <input type="file" name="image" accept="image/*">
-    </div>
+    <p>
+        <label>Content</label><br>
+        <textarea name="content" rows="6">{{ old('content') }}</textarea>
+    </p>
 
-    <div>
-      <label>Content</label><br>
-      <textarea name="content" rows="8" required>{{ old('content') }}</textarea>
-    </div>
+    <p>
+        <label>Afbeelding</label><br>
+        <input type="file" name="image" accept="image/*">
+    </p>
 
-    <button type="submit">Aanmaken</button>
-  </form>
-
-  <p><a href="{{ route('admin.news.index') }}">← naar nieuws</a></p>
-
+    <button type="submit">Opslaan</button>
+</form>
 @endsection
