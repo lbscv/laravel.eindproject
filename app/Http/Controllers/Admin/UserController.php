@@ -52,4 +52,15 @@ class UserController extends Controller
 
         return back()->with('success', 'Adminrechten aangepast.');
     }
+
+    public function destroy(User $user)
+    {
+        if ($user->id === auth()->id()) {
+            return back()->with('error', 'Je kan je eigen account niet verwijderen.');
+        }
+
+        $user->delete();
+
+        return back()->with('success', 'Gebruiker succesvol verwijderd.');
+    }
 }

@@ -77,9 +77,14 @@ Route::middleware(['auth', 'admin'])
         Route::resource('users', UserController::class)->only(['index', 'create', 'store']);
         Route::patch('users/{user}/toggle-admin', [UserController::class, 'toggleAdmin'])
             ->name('users.toggleAdmin');
+        Route::delete('users/{user}', [UserController::class, 'destroy'])
+            ->name('users.destroy');
 
         // Teams management
         Route::resource('teams', TeamController::class);
+
+        
+
 
         // Contact messages management
         Route::get('contact-messages', [ContactMessageController::class, 'index'])->name('contact-messages.index');
