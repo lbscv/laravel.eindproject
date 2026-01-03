@@ -8,6 +8,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\HomeController;
 
 // Admin controllers
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
@@ -18,10 +19,8 @@ use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\ContactMessageController;
 
 //public routes
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Public news
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');

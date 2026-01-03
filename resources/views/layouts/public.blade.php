@@ -9,7 +9,7 @@
 <body class="min-h-screen bg-gray-50">
     <nav class="p-4 bg-white border-b">
         <div class="max-w-6xl mx-auto flex items-center gap-4">
-            <a href="{{ url('/') }}" class="font-bold">Sportclub</a>
+            <a href="{{ route('home') }}">Home</a>
 
             <a href="{{ route('news.index') }}">Nieuws</a>
             <a href="{{ route('faq.index') }}">FAQ</a>
