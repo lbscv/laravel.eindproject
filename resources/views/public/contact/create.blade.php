@@ -70,7 +70,7 @@
         {{-- Verstuur --}}
         <button 
             type="submit"
-            class="bg-slate-800 text-black px-5 py-2 rounded hover:bg-slate-700 transition"
+            class="bg-slate-800 text-black border border-slate-900 px-5 py-2 rounded hover:bg-slate-700 transition"
         >
             Verstuur
         </button>
