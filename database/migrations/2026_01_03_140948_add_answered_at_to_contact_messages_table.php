@@ -5,18 +5,17 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-     public function up(): void
+    public function up(): void
     {
-        Schema::table('contact_messages', function (\Illuminate\Database\Schema\Blueprint $table) {
-            $table->timestamp('answered_at')->nullable()->after('message');
-        });
+        if (!Schema::hasColumn('contact_messages', 'answered_at')) {
+            Schema::table('contact_messages', function (\Illuminate\Database\Schema\Blueprint $table) {
+                $table->timestamp('answered_at')->nullable()->after('message');
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('contact_messages', function (\Illuminate\Database\Schema\Blueprint $table) {
-            $table->dropColumn('answered_at');
-        });
+        // No-op: original table definition already includes this column.
     }
-
 };

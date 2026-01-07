@@ -40,9 +40,13 @@ class ProfileController extends Controller
 
         unset($validated['avatar']);
 
+        if (isset($validated['email']) && $validated['email'] !== $user->email) {
+            $user->email_verified_at = null;
+        }
+
         $user->update($validated);
 
-        return redirect()->route('news.index')->with('status', 'profile-updated');
+        return redirect('/profile')->with('status', 'profile-updated');
 
 
 
@@ -50,9 +54,12 @@ class ProfileController extends Controller
 
     public function destroy(Request $request)
     {
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
+        ]);
+
         $user = $request->user();
 
-        // (optioneel) avatar opruimen
         if ($user->avatar) {
             Storage::disk('public')->delete($user->avatar);
         }
