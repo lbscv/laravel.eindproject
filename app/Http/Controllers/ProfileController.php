@@ -38,15 +38,13 @@ class ProfileController extends Controller
             $validated['avatar'] = $request->file('avatar')->store('avatars', 'public');
         }
 
-        unset($validated['avatar']);
-
         if (isset($validated['email']) && $validated['email'] !== $user->email) {
             $user->email_verified_at = null;
         }
 
         $user->update($validated);
 
-        return redirect('/profile')->with('status', 'profile-updated');
+        return redirect()->route('home')->with('status', 'profile-updated');
 
 
 

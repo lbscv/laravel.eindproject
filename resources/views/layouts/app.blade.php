@@ -33,4 +33,6 @@
             </main>
         </div>
     </body>
-</html>
+                <body class="font-sans antialiased bg-ink-50 text-ink-900">
+
+                        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">

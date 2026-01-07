@@ -45,7 +45,7 @@ Route::get('/users/{user}', [UserProfileController::class, 'show'])->name('users
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return redirect()->route('home');
     })->name('dashboard');
 
     // Own profile (edit page)
