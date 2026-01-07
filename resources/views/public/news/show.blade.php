@@ -22,7 +22,7 @@
     {{-- TERUG NAAR NIEUWS --}}
     <p class="mb-8">
         <a 
-            href="{{ route('admin.news.index') }}"
+            href="{{ route('news.index') }}"
             class="inline-block px-4 py-2 rounded border border-slate-800 text-slate-800 hover:bg-slate-100 transition"
         >
             ← Terug naar nieuws

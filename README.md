@@ -146,6 +146,7 @@ git clone https://github.com/lbscv/laravel.eindproject.git
 cd laravel.project
 
 ### 2. Dependencies installeren
+Tailwindcss extension gebruiken
 ```bash
 composer install
 npm install

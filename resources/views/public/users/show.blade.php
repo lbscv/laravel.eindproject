@@ -3,8 +3,8 @@
 @section('content')
     <h1>Profiel van {{ $user->username ?? $user->name }}</h1>
 
-    @if($user->avatar_path)
-        <img src="{{ asset('storage/'.$user->avatar_path) }}" style="max-width:150px;">
+    @if($user->avatar)
+        <img src="{{ asset('storage/'.$user->avatar) }}" style="max-width:150px;">
     @endif
 
     <p><strong>Username:</strong> {{ $user->username ?? '-' }}</p>

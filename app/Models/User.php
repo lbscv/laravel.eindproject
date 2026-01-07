@@ -24,7 +24,7 @@ class User extends Authenticatable
         'username',
         'birthday',
         'about_me',
-        'avatar_path',
+        'avatar',
         'is_admin',
     ];
     protected $casts = [

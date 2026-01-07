@@ -29,7 +29,7 @@ class NewsController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image_path'] = $request->file('image')->store('news', 'public');
+            $validated['image'] = $request->file('image')->store('news', 'public');
         }
 
         News::create($validated);
@@ -52,7 +52,7 @@ class NewsController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image_path'] = $request->file('image')->store('news', 'public');
+            $validated['image'] = $request->file('image')->store('news', 'public');
         }
 
         $news->update($validated);
