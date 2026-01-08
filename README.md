@@ -131,7 +131,9 @@ Bij het uitvoeren van de seeders wordt automatisch een admin-account aangemaakt:
 
 ## Bronnen
 - Cursus Backend Web EHB
+- https://www.tutorialspoint.com/laravel/laravel_overview.htm
 - Tailwindcss
+- https://www.geeksforgeeks.org/php/laravel/ 
 - Microsoft Copilot voor ondersteuning bij schrijven, coderen en documentatie 
 - ChatGPT voor aanvullende hulp en inspiratie tijdens de ontwikkeling
 
