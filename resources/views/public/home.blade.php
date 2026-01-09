@@ -64,7 +64,9 @@
     @endif
 
     <p style="margin-top:1rem;">
-        <a href="{{ route('news.index') }}">→ Alle nieuwsberichten</a>
+        <a href="{{ route('news.index') }}" style="display:inline-block; background:#1e293b; color:white; padding:0.6rem 1rem; border-radius:4px;">
+            Alle nieuwsberichten
+        </a>
     </p>
 </section>
 

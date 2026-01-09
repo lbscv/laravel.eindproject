@@ -104,31 +104,6 @@
             </div>
         </div>
 
-        <div class="rounded-xl border bg-white p-5 shadow-sm">
-            <h2 class="text-lg font-semibold">Publieke website testen</h2>
-            <p class="mt-2 text-sm text-slate-600">
-                Controleer hoe bezoekers de site zien. Handig om te testen of nieuws, FAQ en contact correct werken.
-            </p>
-
-            <div class="mt-4 flex flex-wrap gap-2">
-                <a class="rounded border px-3 py-2 text-sm hover:bg-slate-50"
-                   href="{{ route('home') }}">
-                    Home
-                </a>
-                <a class="rounded border px-3 py-2 text-sm hover:bg-slate-50"
-                   href="{{ route('news.index') }}">
-                    Nieuws
-                </a>
-                <a class="rounded border px-3 py-2 text-sm hover:bg-slate-50"
-                   href="{{ route('faq.index') }}">
-                    FAQ
-                </a>
-                <a class="rounded border px-3 py-2 text-sm hover:bg-slate-50"
-                   href="{{ route('contact.create') }}">
-                    Contact
-                </a>
-            </div>
-        </div>
 
     </div>
     </br>
