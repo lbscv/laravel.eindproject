@@ -132,11 +132,7 @@
 
     </div>
     </br>
-    <div class="rounded-xl border bg-slate-50 p-5 text-sm text-slate-700">
-        <strong>Tip voor je screencast:</strong>
-        start op dit dashboard, maak een nieuwsitem aan, toon het op de publieke nieuwspagina, toon daarna FAQ beheer
-        (categorie + item), en sluit af met een contactbericht dat je in het admin-panel kan beantwoorden.
-    </div>
+    
 
 </div>
 @endsection

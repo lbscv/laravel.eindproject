@@ -146,28 +146,70 @@ Bij het uitvoeren van de seeders wordt automatisch een admin-account aangemaakt:
 ```bash
 git clone https://github.com/lbscv/laravel.eindproject.git
 cd laravel.project
+```
 
 ### 2. Dependencies installeren
-Tailwindcss extension gebruiken
 ```bash
 composer install
 npm install
-### 3. .env aanpassen voor SQLite DB
+```
+
+### 3. .env bestand aanmaken
+Kopieer `.env.example` naar `.env`:
+```bash
+# Windows PowerShell
+Copy-Item .env.example .env
+
+# Git Bash / Linux / Mac
+cp .env.example .env
+```
+
+Pas in `.env` de database instellingen aan:
+```
 DB_CONNECTION=sqlite
 DB_DATABASE=database/database.sqlite
-### 4. SQLite DB aanmaken
+```
+
+### 4. SQLite database aanmaken
 ```bash
+# Windows PowerShell
+New-Item -Path database/database.sqlite -ItemType File -Force
+
+# Git Bash / Linux / Mac
 touch database/database.sqlite
+```
+
 ### 5. Applicatiesleutel genereren
 ```bash
 php artisan key:generate
-### 6. migrations & seeders uitvoeren voor DB
+```
+
+### 6. Database migreren en seeden
 ```bash
 php artisan migrate:fresh --seed
-### 7. frontend starten
-```bash
-npm run dev
-### 8. laravel server starten
+```
+
+### 7. Laravel development server starten
+
+**Optie A: Via php artisan**
 ```bash
 php artisan serve
+```
+De applicatie draait nu op `http://localhost:8000`
+
+**Optie B: Als php artisan serve niet werkt (bijv. bij Herd PHP)**
+```bash
+# Windows PowerShell
+php -S localhost:8080 -t public
+
+# Git Bash / Linux / Mac
+php -S localhost:8080 -t public
+```
+De applicatie draait nu op `http://localhost:8080`
+
+### 8. Frontend assets compileren (in aparte terminal)
+```bash
+npm run dev
+```
+
 
