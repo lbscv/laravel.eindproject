@@ -74,7 +74,7 @@
     <p>
         Neem contact met ons op voor reservaties, samenwerkingen of algemene vragen.
     </p>
-    <a href="{{ route('contact.create') }}" style="margin-top:1rem; display:inline-block;">
+    <a href="{{ route('contact.create') }}" style="margin-top:1rem; display:inline-block; background:#1e293b; color:white; padding:0.6rem 1rem; border-radius:4px;">
         Contactformulier
     </a>
 </section>
